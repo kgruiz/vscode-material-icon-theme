@@ -8,7 +8,7 @@ console = Console()
 
 if __name__ == "__main__":
 
-    svgPath = Path("unreal-engine-icon.svg")
+    svgPath = Path("pytorch.svg")
 
     svgFiles = list(Path(__file__).parent.glob("*.svg"))
 

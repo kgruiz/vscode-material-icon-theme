@@ -6,11 +6,11 @@ from rich.markup import escape
 
 if __name__ == "__main__":
 
-    svgPath = Path("electron-icon.svg")
+    svgPath = Path("temp-icon.svg")
 
     outputPath = svgPath.with_suffix(".png")
 
-    size = 32
+    size = 16
     density = 300
     background = "none"
 

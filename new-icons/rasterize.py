@@ -8,6 +8,22 @@ if __name__ == "__main__":
 
     svgPath = Path("temp-icon.svg")
 
+    svgFiles = list(Path(__file__).parent.glob("*.svg"))
+
+    if len(svgFiles) == 1:
+
+        svgPath = svgFiles[0]
+
+    elif len(svgFiles) > 1:
+
+        raise ValueError(
+            f"[red]Multiple SVG files found:[/red] {', '.join(str(f) for f in svgFiles)}"
+        )
+
+    else:
+
+        pass
+
     outputPath = svgPath.with_suffix(".png")
 
     size = 16

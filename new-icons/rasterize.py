@@ -1,28 +1,42 @@
 import subprocess
 from pathlib import Path
 
-from rich import print
+from rich.console import Console
 from rich.markup import escape
+
+console = Console()
 
 if __name__ == "__main__":
 
-    svgPath = Path("temp-icon.svg")
+    svgPath = Path("unreal-engine-icon.svg")
 
     svgFiles = list(Path(__file__).parent.glob("*.svg"))
 
-    if len(svgFiles) == 1:
+    if not svgPath.exists():
 
-        svgPath = svgFiles[0]
+        if len(svgFiles) == 1:
 
-    elif len(svgFiles) > 1:
+            svgPath = svgFiles[0]
 
-        raise ValueError(
-            f"[red]Multiple SVG files found:[/red] {', '.join(str(f) for f in svgFiles)}"
-        )
+        elif len(svgFiles) > 1:
 
-    else:
+            console.print(
+                f"[red]Multiple SVG files found:[/red] {', '.join(str(f) for f in svgFiles)}"
+            )
 
-        pass
+            raise ValueError(
+                f"Multiple SVG files found: {', '.join(str(f) for f in svgFiles)}"
+            )
+
+        else:
+
+            console.print(
+                f"[red]No SVG files found in directory:[/red] {Path(__file__).parent}"
+            )
+
+            raise FileNotFoundError(
+                f"No SVG files found in directory: {Path(__file__).parent}"
+            )
 
     outputPath = svgPath.with_suffix(".png")
 
@@ -32,15 +46,19 @@ if __name__ == "__main__":
 
     if not svgPath.is_file():
 
-        raise FileNotFoundError(
+        console.print(
             f"[red]File not found:[/red] [bold yellow]{svgPath.absolute()}[/bold yellow]"
         )
 
+        raise FileNotFoundError(f"File not found: {svgPath.absolute()}")
+
     if svgPath.suffix != ".svg":
 
-        raise FileNotFoundError(
+        console.print(
             f"[red]Invalid file type (not .svg):[/red] [bold yellow]{svgPath.absolute()}[/bold yellow]"
         )
+
+        raise FileNotFoundError(f"Invalid file type (not .svg): {svgPath.absolute()}")
 
     result = subprocess.run(
         [
@@ -64,7 +82,7 @@ if __name__ == "__main__":
             f"[red]ImageMagick failed:[/red]\n[dim]{escape(result.stderr)}[/dim]"
         )
 
-    print(
+    console.print(
         f"[green]✅ Rasterized[/green] [bold cyan]{svgPath.name}[/bold cyan] "
         f"→ [bold magenta]{outputPath.name}[/bold magenta] [dim]({size}px)[/dim]"
     )

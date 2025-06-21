@@ -772,17 +772,17 @@ export const fileIcons: FileIcons = {
     {
       name: 'sty',
       fileExtensions: ['sty'],
-      clone: { base: 'tex', color: 'deep-purple-A200' },
+      clone: { base: 'tex', color: 'deep-purple-A100' },
     },
     {
       name: 'ltx',
       fileExtensions: ['ltx'],
-      clone: { base: 'tex', color: 'teal-400' },
+      clone: { base: 'tex', color: 'teal-A700' },
     },
     {
       name: 'dtx',
       fileExtensions: ['dtx'],
-      clone: { base: 'tex', color: 'blue-gray-300' },
+      clone: { base: 'tex', color: 'yellow-900' },
     },
     { name: 'latexmk', patterns: { latexmkrc: FileNamePattern.Dotfile } },
     {
@@ -978,7 +978,7 @@ export const fileIcons: FileIcons = {
     {
       name: 'cmake',
       fileExtensions: ['cmake'],
-      fileNames: ['cmakelists.txt', 'cmakecache.txt'],
+      fileNames: ['cmakelists.txt', 'cmakecache.txt', 'CMakePresets.json'],
     },
     {
       name: 'assembly',
@@ -1936,10 +1936,10 @@ export const fileIcons: FileIcons = {
       fileExtensions: [
         'stl',
         'stp',
+        'step',
         'obj',
         'o',
         'ac',
-        'blend',
         'dxf',
         'fbx',
         'mesh',
@@ -1952,6 +1952,12 @@ export const fileIcons: FileIcons = {
         'vox',
         'gltf',
         'glb',
+        '3ds',
+        'dae',
+        'ply',
+        'wrl',
+        'usd',
+        'usdz',
       ],
     },
     { name: 'buildkite', fileNames: ['buildkite.yml', 'buildkite.yaml'] },
@@ -3146,5 +3152,6 @@ export const fileIcons: FileIcons = {
       name: 'pytorch',
       fileExtensions: ['pt', 'pth', 'pwf'],
     },
+    { name: 'blender', fileExtensions: ['blend', 'blend1', 'blend2'] },
   ]),
 };
